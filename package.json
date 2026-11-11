@@ -1,0 +1,49 @@
+{
+  "name": "@williams/dsh-martini-theme",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Williams Martini Racing livery for DeepSeek Harness: Martini four-stripe rails, the supplied die-cut logo, an FW40 photo ghost, a pit-board mode switch, and a Martini Racing settings page.",
+  "type": "module",
+  "icon": "./icon.png",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.png"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "icon.png",
+    "icon.svg",
+    "locale/*.json",
+    "README.md"
+  ],
+  "license": "MIT",
+  "author": "Sean Montecillo",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/delmontecillo/dsh-williams-martini-theme.git"
+  },
+  "homepage": "https://github.com/delmontecillo/dsh-williams-martini-theme#readme",
+  "bugs": {
+    "url": "https://github.com/delmontecillo/dsh-williams-martini-theme/issues"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-theme",
+        "@deepseek-ai/dsh-client-ui-conversation",
+        "@deepseek-ai/dsh-client-ui-sidebar",
+        "@deepseek-ai/dsh-client-ui-settings"
+      ]
+    }
+  }
+}

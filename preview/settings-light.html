@@ -1,0 +1,1452 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Martini Racing settings - paddock preview</title>
+<style>
+:root {
+  --dsw-alias-bg-base: #F1F5FA;
+  --dsw-alias-bg-document-preview: #E6EDF6;
+  --dsw-alias-label-document-preview: #33475E;
+  --dsw-alias-bg-layer-1: #FAFCFF;
+  --dsw-alias-bg-layer-2: #FFFFFF;
+  --dsw-alias-bg-layer-3: #FFFFFF;
+  --dsw-alias-bg-mask-1: #081B3247;
+  --dsw-alias-bg-mask-2: #081B322E;
+  --dsw-alias-bg-mask-3: #081B328A;
+  --dsw-alias-bg-mask-drop: #F1F5FAB3;
+  --dsw-alias-bg-mask-photo: #081B32E0;
+  --dsw-alias-bg-module-platform: #E4ECF6;
+  --dsw-alias-bg-multi-select: #EAF1F9;
+  --dsw-alias-bg-overlay: #DCE6F2;
+  --dsw-alias-bg-skeleton: #081B320A;
+  --dsw-alias-border-inverted: #00000000;
+  --dsw-alias-border-inverted2: #00000000;
+  --dsw-alias-border-l1: #081B3214;
+  --dsw-alias-border-l2-darkmode-thin: #081B321A;
+  --dsw-alias-border-l2: #081B321F;
+  --dsw-alias-border-l3: #081B3233;
+  --dsw-alias-border-l4: #081B3252;
+  --dsw-alias-brand-primary: #071A31;
+  --dsw-alias-brand-primary-invert: #071A31;
+  --dsw-alias-brand-primary-new-colorprimary-new-color: #008FD0;
+  --dsw-alias-brand-text: #071A31;
+  --dsw-alias-button-contrast-fill: #071A31;
+  --dsw-alias-button-elevated-fill: #FFFFFF;
+  --dsw-alias-button-floating-fill: #FFFFFF;
+  --dsw-alias-button-floating-hover: #EEF5FC;
+  --dsw-alias-button-ghost-active-border: #54687D;
+  --dsw-alias-button-ghost-active-fill: #E6EEF8;
+  --dsw-alias-button-ghost-active-hover: #DCE7F4;
+  --dsw-alias-button-info-fill: #009FDF;
+  --dsw-alias-button-info-hover: #0087C2;
+  --dsw-alias-button-primary-dimmed: #D9E9F6;
+  --dsw-alias-button-primary-fill: #009FDF;
+  --dsw-alias-button-primary-hover: #0087C2;
+  --dsw-alias-button-tool-bar-fill: #071A3166;
+  --dsw-alias-button-tool-bar-fill-invisible: #071A3133;
+  --dsw-alias-button-tool-bar-hover: #071A3188;
+  --dsw-alias-interactive-bg-active: #071A311A;
+  --dsw-alias-interactive-bg-hover: #071A310F;
+  --dsw-alias-interactive-bg-hover-accent: #009FDF12;
+  --dsw-alias-interactive-bg-hover-danger: #E4002B14;
+  --dsw-alias-interactive-bg-hover-solid: #DCE7F4;
+  --dsw-alias-label-caption: #63778D;
+  --dsw-alias-label-dimmed: #D7E1EC;
+  --dsw-alias-label-primary: #071A31;
+  --dsw-alias-label-primary-bluish: #006A9E;
+  --dsw-alias-label-primary-dimmed: #20364D;
+  --dsw-alias-label-primary-foreground: #F8FBFF;
+  --dsw-alias-label-primary-inverted: #FFFFFF;
+  --dsw-alias-label-secondary: #344A61;
+  --dsw-alias-label-tertiary: #5C7188;
+  --dsw-alias-link: #0072AD;
+  --dsw-alias-menu-icon: #20364D;
+  --dsw-alias-markdown-citation: #E4EEF9;
+  --dsw-alias-markdown-code-block: #EAF1F8;
+  --dsw-alias-markdown-code-block-banner: #F1F6FC;
+  --dsw-alias-markdown-code-segment-selected: #FFFFFF;
+  --dsw-alias-markdown-code-segment-unselected: #E7EFF8;
+  --dsw-alias-markdown-inline-code: #E9F1F9;
+  --dsw-alias-markdown-placeholder: #E9F1F9;
+  --dsw-alias-markdown-tag: #E4EEF9;
+  --dsw-alias-scrollbar-bg-l1: #071A3114;
+  --dsw-alias-scrollbar-bg-l2: #071A311F;
+  --dsw-alias-scrollbar-hover-l1: #009FDF99;
+  --dsw-alias-scrollbar-hover-l2: #0087C299;
+  --dsw-alias-state-business-primary: #008FD0;
+  --dsw-alias-state-business-tertiary: #DDF2FC;
+  --dsw-alias-state-error-primary: #D01736;
+  --dsw-alias-state-error-secondary: #E4002B;
+  --dsw-alias-state-idle-primary: #8D9FB3;
+  --dsw-alias-state-success-primary: #0E8A5F;
+  --dsw-alias-state-success-secondary: #1FA673;
+  --dsw-alias-state-success-tertiary: #DDF4EA;
+  --dsw-alias-state-warn-label: #8A5B00;
+  --dsw-alias-state-warn-primary: #B57400;
+  --dsw-alias-state-warn-secondary: #D9920A;
+  --dsw-alias-state-warn-tertiary: #FBEFD2;
+  --dsw-alias-code-diff-added: #0E8A5F14;
+  --dsw-alias-code-diff-deleted: #D0173614;
+  --dsw-alias-file-diff-added-bg: #E2F4EC;
+  --dsw-alias-file-diff-added-gutter: #EEF9F3;
+  --dsw-alias-file-diff-added-marker: #0E8A5F;
+  --dsw-alias-file-diff-deleted-bg: #FBE7EB;
+  --dsw-alias-file-diff-deleted-gutter: #FDEFEF;
+  --dsw-alias-file-diff-deleted-marker: #D01736;
+  --dsw-alias-settings-card-fill: #FFFFFF;
+  --dsw-alias-settings-card-stroke: #081B321A;
+  --dsw-alias-toast-bg: #071A31;
+  --dsw-alias-toast-label: #F8FBFF;
+  --dsw-alias-tooltip-bg: #071A31;
+  --dsw-alias-tooltip-key-bg: #26405B;
+  --dsw-alias-onboarding-accent: #009FDF;
+  --dsw-alias-onboarding-card-fill: #FFFFFF;
+  --dsw-alias-onboarding-checkbox-border: #081B3242;
+  --dsw-alias-onboarding-secondary-fill: #E4EEF9;
+  --dsw-menu-surface-fill: #FFFFFFF0;
+  --dsw-menu-backdrop-filter: blur(28px) saturate(145%);
+  --dsw-specific-menu: #FFFFFFF0;
+  --dsw-specific-bubble: #FFFFFF;
+  --dsw-specific-bubble-highlight: #F7FAFE;
+  --dsw-specific-input-major: #FFFFFF;
+  --dsw-specific-login-input: #FAFCFF;
+  --dsw-specific-selector: #E4ECF6;
+  --dsw-specific-sidebar-fill: #E6EDF7;
+  --dsw-specific-sidebar-nav-item-active: #FFFFFF;
+  --dsw-specific-sidebar-nav-item-active-accent: #009FDF;
+  --dsw-specific-sidebar-nav-item-hover: #DCE7F4;
+  --dsw-specific-tip: #FFFFFF;
+  --dsw-radius-xs: 2px;
+  --dsw-radius-sm: 4px;
+  --dsw-radius-md: 6px;
+  --dsw-radius-lg: 10px;
+  --dsw-radius-xl: 14px;
+  --dsw-radius-panel: 18px;
+  --dsw-focus-ring-color: #009FDF;
+  --dsw-focus-ring-width: 2px;
+  --dsw-elevation-stroke-color: var(--dsw-alias-border-l4);
+  --dsw-shadow-lv1: 0 1px 0 #071A3114, 0 0 0 1px #071A310F;
+  --dsw-shadow-lv1-blur: 0 6px 18px #071A3114;
+  --dsw-shadow-lv2: 0 2px 0 #071A3110, 0 10px 28px #071A3114, 0 0 0 1px #071A3114;
+  --dsw-shadow-lv3: 0 24px 64px #071A311F, 0 0 0 1px #071A311A;
+  --dsw-linear-gradient-think: linear-gradient(180deg, #FFFFFF 20.19%, #FFFFFF00 100%);
+  --dsw-linear-think-select: linear-gradient(180deg, #EEF5FC 20.19%, #EEF5FC00 100%);
+  --wm-navy: #0A2242;
+  --wm-navy-deep: #051426;
+  --wm-blue: #009FDF;
+  --wm-blue-deep: #0077B6;
+  --wm-blue-bright: #4FD3F7;
+  --wm-red: #E4002B;
+  --wm-red-deep: #B00022;
+  --wm-ice: #F5F9FE;
+  --wm-silver: #B9C9DA;
+  --wm-gold: #EFBF4C;
+  --wm-ink: #071A31;
+  --wm-paper: #F1F5FA;
+  --wm-line: #081B321F;
+  --wm-line-strong: #081B3238;
+  --wm-plate: #FFFFFF;
+  --wm-plate-ink: #071A31;
+  --wm-soft: #009FDF14;
+  --wm-blue-soft: #009FDF1F;
+  --wm-red-soft: #E4002B1A;
+  --wm-glow: #009FDF24;
+  --wm-grid: #071A310A;
+  --wm-art-opacity: 0.14;
+  --wm-stripe-opacity: 0.11;
+  --wm-wordmark-opacity: 0.28;
+  --wm-checker: #071A31;
+  --wm-display: "Bahnschrift SemiCondensed", "Bahnschrift", "Arial Narrow", "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body {
+  background:
+    radial-gradient(70% 40% at 80% 0%, #DCEAF7, transparent 70%),
+    #EEF3F9;
+  font-family: "Segoe UI Variable Text", "Segoe UI", sans-serif;
+}
+.panel {
+  width: min(860px, calc(100vw - 48px));
+  margin: 30px auto;
+  border: 1px solid var(--wm-line);
+  border-radius: 10px;
+  background: var(--dsw-alias-bg-layer-1);
+  box-shadow: 0 28px 70px rgba(8, 27, 50, .12);
+}
+</style>
+<style>
+      /* ---------- Canvas ------------------------------------------------- */
+
+      body[data-wm-theme] {
+        background-color: var(--dsw-alias-bg-base);
+        color: var(--dsw-alias-label-primary);
+        accent-color: var(--wm-blue);
+        -webkit-font-smoothing: antialiased;
+        background-image:
+          radial-gradient(72% 46% at 86% -6%, var(--wm-glow), transparent 72%),
+          linear-gradient(180deg,
+            color-mix(in srgb, var(--wm-blue) 3%, transparent),
+            transparent 34%);
+      }
+
+      body[data-wm-theme] ::selection,
+      body[data-wm-theme]::selection {
+        background: color-mix(in srgb, var(--wm-blue) 36%, transparent);
+        color: var(--dsw-alias-label-primary);
+      }
+
+      body[data-wm-theme] [class*="frame"] {
+        background-color: var(--dsw-alias-bg-base);
+        background-image: none;
+      }
+
+      body[data-wm-theme] [class*="frame"] [class*="frame"] {
+        background-color: var(--dsw-alias-bg-base) !important;
+        background-image: none !important;
+      }
+
+      body[data-wm-theme] [class*="centerCol"] {
+        background-color: transparent;
+      }
+
+      body[data-wm-theme] [data-conversation-content] {
+        background-color: transparent !important;
+        background-image: none !important;
+      }
+
+      body[data-wm-theme] [class*="rightbarCol"],
+      body[data-wm-theme] [class*="bottomRow"] {
+        background-color: transparent !important;
+        background-image: none !important;
+        border-color: color-mix(in srgb, var(--wm-line) 70%, transparent) !important;
+        box-shadow: none !important;
+      }
+
+      body[data-wm-theme] [class*="frame"] :has([data-composer-card]) {
+        background: transparent !important;
+      }
+
+      body[data-wm-theme] [data-composer-seat],
+      body[data-wm-theme] [class*="frame"] [class*="bottomRow"] {
+        background-color: transparent !important;
+        background-image: none !important;
+        border-color: color-mix(in srgb, var(--wm-line) 70%, transparent) !important;
+        box-shadow: none !important;
+      }
+
+      /* ---------- Sidebar ------------------------------------------------ */
+
+      body[data-wm-theme] [class*="sidebarCol"] {
+        position: relative;
+        background-color: var(--dsw-specific-sidebar-fill);
+        border-right: 1px solid var(--wm-line);
+      }
+
+      /* The four-stripe livery runs down the rail's inner edge, then fades. */
+      body[data-wm-theme] [class*="sidebarCol"]::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: -1px;
+        bottom: 0;
+        width: 4px;
+        pointer-events: none;
+        background: linear-gradient(
+          90deg,
+          var(--wm-blue-bright) 0 1px,
+          var(--wm-blue) 1px 2px,
+          var(--wm-red) 2px 3px,
+          var(--wm-blue) 3px 4px);
+        opacity: .9;
+        -webkit-mask-image: linear-gradient(180deg, #000 0, #000 38%, transparent 88%);
+        mask-image: linear-gradient(180deg, #000 0, #000 38%, transparent 88%);
+      }
+
+      body[data-wm-theme] [class*="sidebarCol"] > [data-slot="sidebar"] > [class*="root"] {
+        background-color: var(--dsw-specific-sidebar-fill);
+        background-image:
+          radial-gradient(92% 42% at 50% -6%, var(--wm-blue-soft), transparent 74%),
+          linear-gradient(180deg, transparent 58%, var(--wm-red-soft) 160%);
+      }
+
+      html[data-windows-titlebar] body[data-wm-theme] [class*="frame"]::before {
+        background-image: radial-gradient(
+          calc(var(--wm-col-left, 280px) * 0.82) 130%
+          at calc(var(--wm-col-left, 280px) / 2) 100%,
+          var(--wm-blue-soft),
+          transparent 78%);
+      }
+
+      body[data-wm-theme] .wm-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        min-width: 0;
+        line-height: 1;
+        user-select: none;
+      }
+
+      body[data-wm-theme] .wm-brand__flag {
+        display: inline-flex;
+        flex-direction: column;
+        gap: 1px;
+        width: 15px;
+        flex: none;
+        padding-top: 1px;
+      }
+
+      body[data-wm-theme] .wm-brand__bar {
+        display: block;
+        height: 2px;
+        border-radius: .5px;
+      }
+
+      body[data-wm-theme] .wm-brand__bar--blue { background: var(--wm-blue); }
+      body[data-wm-theme] .wm-brand__bar--red { background: var(--wm-red); }
+
+      body[data-wm-theme] .wm-brand__text {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        min-width: 0;
+      }
+
+      body[data-wm-theme] .wm-brand__name {
+        font-family: var(--wm-display);
+        font-size: 14px;
+        font-style: italic;
+        font-weight: 800;
+        letter-spacing: .055em;
+        line-height: .92;
+        color: var(--dsw-alias-label-primary);
+        white-space: nowrap;
+      }
+
+      body[data-wm-theme] .wm-brand__sub {
+        font-family: var(--wm-display);
+        font-size: 6.5px;
+        font-weight: 600;
+        letter-spacing: .24em;
+        line-height: 1;
+        color: var(--dsw-alias-label-tertiary);
+        white-space: nowrap;
+      }
+
+      body[data-wm-theme] [role="treeitem"][aria-selected="true"] {
+        background: linear-gradient(90deg, var(--wm-blue-soft), transparent 94%) !important;
+        box-shadow:
+          inset 3px 0 0 var(--wm-blue),
+          inset 5px 0 0 var(--wm-red);
+      }
+
+      body[data-wm-theme] [class*="sessionRow"]:hover {
+        background: var(--dsw-alias-interactive-bg-hover) !important;
+      }
+
+      /* ---------- Hero --------------------------------------------------- */
+
+      body[data-wm-theme] [data-phase="hero"] {
+        position: relative;
+      }
+
+      /* A very large, outlined Williams ghost sits behind the empty state. */
+      body[data-wm-theme] [data-phase="hero"]::before {
+        content: "WILLIAMS";
+        position: absolute;
+        top: -4px;
+        left: 34%;
+        z-index: 0;
+        font-family: var(--wm-display);
+        font-size: clamp(76px, 11.5vw, 190px);
+        font-style: italic;
+        font-weight: 800;
+        letter-spacing: -.035em;
+        line-height: .76;
+        color: transparent;
+        -webkit-text-stroke: 1px color-mix(in srgb, var(--wm-blue) 30%, transparent);
+        opacity: .55;
+        pointer-events: none;
+        white-space: nowrap;
+      }
+
+      body[data-wm-theme] [data-phase="hero"] [class*="headline"] {
+        font-family: var(--wm-display) !important;
+        font-style: italic;
+        font-weight: 800 !important;
+        letter-spacing: -.025em !important;
+        text-transform: uppercase;
+      }
+
+      body[data-wm-theme] [class*="fishHitbox"] {
+        padding: 0 !important;
+        width: auto !important;
+        height: auto !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        overflow: visible !important;
+      }
+
+      body[data-wm-theme] .wm-hero {
+        display: inline-flex;
+        flex-direction: column;
+        gap: 8px;
+        transform: rotate(-1.1deg);
+        transform-origin: left bottom;
+      }
+
+      body[data-wm-theme] .wm-hero__logo {
+        display: block;
+        width: 148px;
+        height: auto;
+        filter:
+          drop-shadow(0 1px 0 rgba(255, 255, 255, .5))
+          drop-shadow(0 10px 22px rgba(2, 12, 26, .3));
+      }
+
+      body[data-wm-theme] .wm-hero__meta {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding-left: 2px;
+        color: var(--dsw-alias-label-tertiary);
+        font-family: var(--wm-display);
+        font-size: 8px;
+        font-weight: 600;
+        letter-spacing: .22em;
+        line-height: 1;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      body[data-wm-theme] .wm-hero__code {
+        color: var(--wm-blue);
+        font-weight: 800;
+        letter-spacing: .12em;
+      }
+
+      body[data-wm-theme] .wm-hero__dot {
+        width: 2px;
+        height: 2px;
+        border-radius: 99px;
+        background: currentColor;
+        opacity: .6;
+      }
+
+      /* ---------- Turn rail ---------------------------------------------- */
+
+      body[data-wm-theme] [class*="marks"] > [class*="mark"]::before {
+        background: color-mix(in srgb, var(--wm-blue) var(--wm-tick, 55%), var(--wm-silver)) !important;
+      }
+
+      body[data-wm-theme] [class*="markActive"] {
+        --wm-tick: 100%;
+      }
+
+      body[data-wm-theme] [class*="markActive"]::before {
+        width: 24px !important;
+        height: 3px !important;
+        border-radius: 1px;
+        box-shadow: 0 0 10px color-mix(in srgb, var(--wm-blue) 70%, transparent);
+      }
+
+      body[data-wm-theme] [class*="SNx2jG_frame"] {
+        background-color: transparent !important;
+        background-image: none !important;
+        border-radius: 8px;
+      }
+
+      /* ---------- Composer ----------------------------------------------- */
+
+      body[data-wm-theme] [data-composer-card] {
+        position: relative;
+        background-color: var(--wm-plate) !important;
+        background-image:
+          linear-gradient(180deg,
+            color-mix(in srgb, var(--wm-blue) 2.5%, transparent),
+            transparent 42%) !important;
+        border: 1px solid var(--wm-line-strong) !important;
+        border-radius: 6px !important;
+        box-shadow:
+          inset 0 1px 0 color-mix(in srgb, #FFFFFF 8%, transparent),
+          0 14px 36px rgba(2, 12, 26, .14) !important;
+        transition: border-color .15s ease, box-shadow .15s ease;
+      }
+
+      /* The four livery stripes become the input's leading rule. */
+      body[data-wm-theme] [data-composer-card]::before {
+        content: "";
+        position: absolute;
+        top: -1px;
+        left: 12px;
+        width: 138px;
+        height: 3px;
+        border-radius: 2px;
+        pointer-events: none;
+        background: linear-gradient(
+          90deg,
+          var(--wm-blue-bright) 0 12%,
+          transparent 12% 14%,
+          var(--wm-blue) 14% 40%,
+          transparent 40% 42%,
+          var(--wm-red) 42% 57%,
+          transparent 57% 59%,
+          var(--wm-blue) 59% 82%,
+          transparent 82% 84%,
+          var(--wm-silver) 84% 100%);
+        opacity: .9;
+      }
+
+      body[data-wm-theme] [data-composer-card]:focus-within {
+        border-color: color-mix(in srgb, var(--wm-blue) 72%, transparent) !important;
+        box-shadow:
+          inset 0 1px 0 color-mix(in srgb, #FFFFFF 8%, transparent),
+          0 0 0 1px color-mix(in srgb, var(--wm-blue) 45%, transparent),
+          0 16px 40px rgba(2, 12, 26, .18) !important;
+      }
+
+      body[data-wm-theme] [data-composer-placeholder] {
+        color: var(--dsw-alias-label-tertiary);
+      }
+
+      /* ---------- Buttons ------------------------------------------------ */
+
+      body[data-wm-theme] button[class*="newSession"] {
+        position: relative;
+        overflow: hidden;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, .18), transparent 46%),
+          linear-gradient(100deg, #0AB0EA 0%, #008FD0 52%, #0072AD 100%) !important;
+        color: #F7FBFF !important;
+        border: 0 !important;
+        border-radius: 4px !important;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, .36),
+          4px 4px 0 var(--wm-red),
+          0 10px 24px color-mix(in srgb, var(--wm-blue) 30%, transparent) !important;
+        font-family: var(--wm-display) !important;
+        font-style: italic;
+        font-weight: 800 !important;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+        transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+      }
+
+      body[data-wm-theme] button[class*="newSession"]::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 6px;
+        pointer-events: none;
+        background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, .85) 0 1.5px,
+          transparent 1.5px 3px,
+          rgba(228, 0, 43, .95) 3px 4.5px,
+          transparent 4.5px 6px);
+      }
+
+      body[data-wm-theme] button[class*="newSession"]:hover {
+        filter: saturate(1.08) brightness(1.04);
+        transform: translate(-1px, -1px);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, .4),
+          5px 5px 0 var(--wm-red),
+          0 12px 28px color-mix(in srgb, var(--wm-blue) 34%, transparent) !important;
+      }
+
+      body[data-wm-theme] button[class*="newSession"]:active {
+        transform: translate(1px, 1px);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, .3),
+          2px 2px 0 var(--wm-red) !important;
+      }
+
+      body[data-wm-theme] button[class*="newSession"] kbd {
+        border-color: rgba(255, 255, 255, .38) !important;
+        background: rgba(255, 255, 255, .14) !important;
+        color: #F7FBFF !important;
+      }
+
+      body[data-wm-theme] [class*="newSessionContent"],
+      body[data-wm-theme] [class*="newSessionLabel"] {
+        color: #F7FBFF !important;
+      }
+
+      body[data-wm-theme] button[aria-label="Send message"]:not(:disabled) {
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, .2), transparent 50%),
+          linear-gradient(150deg, var(--wm-red), var(--wm-red-deep)) !important;
+        color: #FFFFFF !important;
+        border-radius: 5px !important;
+        box-shadow:
+          0 0 0 1px color-mix(in srgb, var(--wm-red-deep) 62%, transparent),
+          0 0 0 3px color-mix(in srgb, var(--wm-blue) 16%, transparent),
+          0 6px 16px color-mix(in srgb, var(--wm-red) 34%, transparent) !important;
+        transition: filter .12s ease, transform .12s ease;
+      }
+
+      body[data-wm-theme] button[aria-label="Send message"]:not(:disabled):hover {
+        filter: brightness(1.1) saturate(1.06);
+        transform: translateY(-1px);
+      }
+
+      body[data-wm-theme] button[class*="themeCube"][aria-pressed="true"] {
+        border-color: var(--wm-blue) !important;
+        box-shadow: 0 0 0 1px var(--wm-blue), 3px 3px 0 var(--wm-blue-soft);
+      }
+
+      /* ---------- Bubble, scrollbars, glyphs ----------------------------- */
+
+      body[data-wm-theme] [class*="userStack"] [class*="bubble"] {
+        border: 1px solid var(--wm-line) !important;
+        box-shadow:
+          inset 3px 0 0 var(--wm-blue),
+          inset 5px 0 0 var(--wm-red);
+      }
+
+      body[data-wm-theme] ::-webkit-scrollbar {
+        width: 7px;
+        height: 7px;
+        background: transparent;
+      }
+
+      body[data-wm-theme] ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      body[data-wm-theme] ::-webkit-scrollbar-thumb {
+        background: var(--dsw-alias-scrollbar-bg-l1);
+        border-radius: 99px;
+      }
+
+      body[data-wm-theme] ::-webkit-scrollbar-thumb:hover {
+        background: var(--dsw-alias-scrollbar-hover-l1);
+      }
+
+      body[data-wm-theme] [class*="entryIcon"] svg [fill="#FFBC4D"] {
+        fill: var(--wm-blue) !important;
+      }
+
+      body[data-wm-theme] [class*="entryIcon"] svg [stroke="#FFCD78"] {
+        stroke: var(--wm-blue) !important;
+      }
+
+      body[data-wm-theme] [class*="entryIcon"] svg [stroke="#679EFE"] {
+        stroke: var(--wm-red) !important;
+      }
+
+      /* ---------- Artwork layer ------------------------------------------ */
+
+      body[data-wm-theme] .wm-art {
+        position: fixed;
+        inset: 0;
+        z-index: 4;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      /* Paddock blueprint grid, feathered away from the reading column. */
+      body[data-wm-theme] .wm-art__grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(var(--wm-grid) 1px, transparent 1px),
+          linear-gradient(90deg, var(--wm-grid) 1px, transparent 1px);
+        background-size: 56px 56px;
+        -webkit-mask-image: radial-gradient(90% 76% at 74% 32%, #000, transparent 78%);
+        mask-image: radial-gradient(90% 76% at 74% 32%, #000, transparent 78%);
+      }
+
+      /* One oversized diagonal livery band on the right, at print opacity. */
+      body[data-wm-theme] .wm-art__stripe {
+        position: absolute;
+        top: -26%;
+        right: -20%;
+        width: 46vw;
+        height: 158%;
+        transform: rotate(24deg);
+        transform-origin: center;
+        opacity: var(--wm-stripe-opacity);
+        background: linear-gradient(
+          to bottom,
+          transparent 0 18%,
+          var(--wm-blue) 18% 20.5%,
+          transparent 20.5% 23.5%,
+          var(--wm-blue) 23.5% 26%,
+          transparent 26% 29%,
+          var(--wm-red) 29% 31.5%,
+          transparent 31.5% 34.5%,
+          var(--wm-blue) 34.5% 37%,
+          transparent 37% 100%);
+        -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 34%, #000 100%);
+        mask-image: linear-gradient(90deg, transparent 0, #000 34%, #000 100%);
+      }
+
+      /* The FW40 detail is printed into the corner and feathered on two edges. */
+      body[data-wm-theme] .wm-art__car {
+        position: absolute;
+        right: -5vw;
+        bottom: -11vh;
+        width: min(32vw, 480px);
+        aspect-ratio: 4 / 5;
+        background-image: url("file:///C:/Users/admin/dsh-williams-martini-theme/assets/car-paper.webp");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: var(--wm-art-opacity);
+        mix-blend-mode: multiply;
+        transform: rotate(-2.2deg);
+        -webkit-mask-image:
+          linear-gradient(to left, #000 0 34%, transparent 92%),
+          linear-gradient(to top, #000 0 34%, transparent 92%),
+          linear-gradient(to right, transparent 0, #000 26%);
+        -webkit-mask-composite: source-in;
+        mask-image:
+          linear-gradient(to left, #000 0 34%, transparent 92%),
+          linear-gradient(to top, #000 0 34%, transparent 92%),
+          linear-gradient(to right, transparent 0, #000 26%);
+        mask-composite: intersect;
+      }
+
+      body[data-wm-theme][data-ds-dark-theme] .wm-art__car {
+        background-image: url("file:///C:/Users/admin/dsh-williams-martini-theme/assets/car-night.webp");
+        mix-blend-mode: normal;
+        opacity: var(--wm-art-opacity);
+      }
+
+      /* Vertical MARTINI outline, like a garage wall decal. */
+      body[data-wm-theme] .wm-art__wordmark {
+        position: absolute;
+        top: 3%;
+        right: -2px;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        font-family: var(--wm-display);
+        font-size: clamp(64px, 9.4vw, 158px);
+        font-style: italic;
+        font-weight: 800;
+        letter-spacing: .04em;
+        line-height: .8;
+        color: transparent;
+        -webkit-text-stroke: 1px color-mix(in srgb, var(--wm-blue) 40%, transparent);
+        opacity: var(--wm-wordmark-opacity);
+        user-select: none;
+      }
+
+      /* Livery stack under the window titlebar, starting at the rail edge. */
+      body[data-wm-theme] .wm-art__flag {
+        position: absolute;
+        top: 0;
+        left: var(--wm-col-left, 0);
+        width: min(46vw, 520px);
+        height: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+        padding-top: 2px;
+        -webkit-mask-image: linear-gradient(to right, #000 0 52%, transparent 100%);
+        mask-image: linear-gradient(to right, #000 0 52%, transparent 100%);
+      }
+
+      body[data-wm-theme] .wm-art__flag i {
+        display: block;
+        height: 2px;
+      }
+
+      body[data-wm-theme] .wm-art__flag i:nth-child(1),
+      body[data-wm-theme] .wm-art__flag i:nth-child(2),
+      body[data-wm-theme] .wm-art__flag i:nth-child(4) {
+        background: var(--wm-blue);
+      }
+
+      body[data-wm-theme] .wm-art__flag i:nth-child(3) {
+        background: var(--wm-red);
+      }
+
+      /* Finish line along the floor. */
+      body[data-wm-theme] .wm-art__checker {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 4px;
+        opacity: .18;
+        background-image:
+          conic-gradient(
+            var(--wm-checker) 0 25%,
+            transparent 0 50%,
+            var(--wm-checker) 0 75%,
+            transparent 0);
+        background-size: 8px 8px;
+        -webkit-mask-image: linear-gradient(to right, transparent, #000 16%, #000 84%, transparent);
+        mask-image: linear-gradient(to right, transparent, #000 16%, #000 84%, transparent);
+      }
+
+      /* ---------- Pit-wall decal ---------------------------------------- */
+
+      body[data-wm-theme] .wm-pit {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 0;
+        padding: 1px 2px;
+        color: var(--dsw-alias-label-caption);
+        font-family: var(--wm-display);
+        font-size: 8.5px;
+        font-weight: 600;
+        letter-spacing: .2em;
+        line-height: 1;
+        text-transform: uppercase;
+        user-select: none;
+      }
+
+      body[data-wm-theme] .wm-pit__logo {
+        width: 42px;
+        height: auto;
+        flex: none;
+        opacity: .95;
+        filter: drop-shadow(0 1px 1px rgba(2, 12, 26, .22));
+      }
+
+      body[data-wm-theme] .wm-pit__bars {
+        display: inline-flex;
+        flex-direction: column;
+        gap: 1px;
+        width: 10px;
+        flex: none;
+        transform: skewX(-18deg);
+      }
+
+      body[data-wm-theme] .wm-pit__bar {
+        display: block;
+        height: 1.5px;
+        border-radius: .5px;
+      }
+
+      body[data-wm-theme] .wm-pit__bar--blue { background: var(--wm-blue); }
+      body[data-wm-theme] .wm-pit__bar--red { background: var(--wm-red); }
+
+      body[data-wm-theme] .wm-pit__label {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      body[data-wm-theme] .wm-pit__dot {
+        width: 2px;
+        height: 2px;
+        flex: none;
+        border-radius: 99px;
+        background: currentColor;
+        opacity: .55;
+      }
+
+      body[data-wm-theme] .wm-pit__code {
+        color: var(--wm-blue);
+        font-weight: 800;
+        letter-spacing: .08em;
+      }
+
+      body[data-wm-theme] .wm-pit__number {
+        color: var(--wm-red);
+        font-size: 10px;
+        font-style: italic;
+        font-weight: 800;
+        letter-spacing: .02em;
+      }
+
+      body[data-wm-theme] .wm-pit__checker {
+        width: 24px;
+        height: 7px;
+        flex: none;
+        border-radius: 1px;
+        opacity: .5;
+        background-image:
+          conic-gradient(
+            currentColor 0 25%,
+            transparent 0 50%,
+            currentColor 0 75%,
+            transparent 0);
+        background-size: 7px 7px;
+      }
+
+      /* ---------- Pit-board mode switch --------------------------------- */
+
+      body[data-wm-theme] .wm-mode {
+        box-sizing: border-box;
+        position: relative;
+        display: inline-flex;
+        flex: none;
+        align-items: center;
+        width: 58px;
+        height: 24px;
+        margin: 0;
+        padding: 0;
+        border: 1px solid var(--wm-line-strong);
+        border-radius: 4px;
+        background: color-mix(in srgb, var(--wm-ink) 7%, transparent);
+        box-shadow: inset 0 1px 0 color-mix(in srgb, #FFFFFF 8%, transparent);
+        color: var(--dsw-alias-label-tertiary);
+        cursor: pointer;
+        transition: border-color .15s ease, background .15s ease;
+      }
+
+      body[data-wm-theme] .wm-mode:hover {
+        border-color: var(--wm-blue);
+        background: var(--wm-blue-soft);
+      }
+
+      body[data-wm-theme] .wm-mode:focus-visible {
+        outline: 2px solid var(--wm-blue);
+        outline-offset: 2px;
+      }
+
+      body[data-wm-theme] .wm-mode__thumb {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 26px;
+        height: 18px;
+        border-radius: 3px;
+        background: linear-gradient(180deg, var(--wm-blue-bright), var(--wm-blue));
+        box-shadow: 0 2px 7px color-mix(in srgb, var(--wm-blue) 40%, transparent);
+        transition: transform .18s cubic-bezier(.2, .8, .2, 1), background .18s ease;
+      }
+
+      body[data-wm-theme] .wm-mode[data-mode="night"] .wm-mode__thumb {
+        transform: translateX(26px);
+        background: linear-gradient(180deg, var(--wm-navy), var(--wm-navy-deep));
+        box-shadow:
+          0 2px 8px rgba(0, 0, 0, .3),
+          inset 0 0 0 1px color-mix(in srgb, var(--wm-blue) 60%, transparent);
+      }
+
+      body[data-wm-theme] .wm-mode__icon {
+        position: relative;
+        z-index: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 100%;
+        transition: color .15s ease;
+      }
+
+      body[data-wm-theme] .wm-mode[data-mode="day"] .wm-mode__icon--day,
+      body[data-wm-theme] .wm-mode[data-mode="night"] .wm-mode__icon--night {
+        color: #FFFFFF;
+      }
+
+      body[data-wm-theme] .wm-mode[data-mode="day"] .wm-mode__icon--night,
+      body[data-wm-theme] .wm-mode[data-mode="night"] .wm-mode__icon--day {
+        color: color-mix(in srgb, var(--wm-ink) 44%, transparent);
+      }
+
+      /* ---------- Settings page ----------------------------------------- */
+
+      body[data-wm-theme] .wm-set {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 26px 30px 40px;
+        color: var(--dsw-alias-label-primary);
+      }
+
+      body[data-wm-theme] .wm-set__hero {
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        gap: 26px;
+        padding: 26px 28px;
+        border-radius: 10px;
+        background:
+          radial-gradient(120% 150% at 92% -20%, #0A7FB9 0%, transparent 58%),
+          linear-gradient(112deg, #051426 0%, #082A4C 56%, #0A5C8A 100%);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, .14),
+          0 16px 40px rgba(2, 12, 26, .28);
+        color: #EAF3FF;
+      }
+
+      body[data-wm-theme] .wm-set__hero::before {
+        content: "";
+        position: absolute;
+        top: -24%;
+        right: -8%;
+        width: 62%;
+        height: 150%;
+        transform: rotate(24deg);
+        opacity: .24;
+        background: linear-gradient(
+          to bottom,
+          transparent 0 12%,
+          var(--wm-blue-bright) 12% 15%,
+          transparent 15% 19%,
+          var(--wm-blue) 19% 22%,
+          transparent 22% 26%,
+          var(--wm-red) 26% 29%,
+          transparent 29% 33%,
+          var(--wm-blue) 33% 36%,
+          transparent 36% 100%);
+      }
+
+      body[data-wm-theme] .wm-set__hero::after {
+        content: "FW40";
+        position: absolute;
+        right: 20px;
+        bottom: -12px;
+        font-family: var(--wm-display);
+        font-size: 92px;
+        font-style: italic;
+        font-weight: 800;
+        letter-spacing: -.03em;
+        color: transparent;
+        -webkit-text-stroke: 1px rgba(234, 243, 255, .16);
+        pointer-events: none;
+      }
+
+      body[data-wm-theme] .wm-set__logo {
+        position: relative;
+        z-index: 1;
+        width: 190px;
+        max-width: 42%;
+        height: auto;
+        flex: none;
+        transform: rotate(-1.4deg);
+        filter: drop-shadow(0 10px 22px rgba(0, 0, 0, .38));
+      }
+
+      body[data-wm-theme] .wm-set__heroText {
+        position: relative;
+        z-index: 1;
+        min-width: 0;
+      }
+
+      body[data-wm-theme] .wm-set__eyebrow {
+        display: block;
+        margin-bottom: 9px;
+        color: var(--wm-blue-bright);
+        font-family: var(--wm-display);
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: .28em;
+        text-transform: uppercase;
+      }
+
+      body[data-wm-theme] .wm-set__hero h2 {
+        margin: 0 0 8px;
+        font-family: var(--wm-display);
+        font-size: 30px;
+        font-style: italic;
+        font-weight: 800;
+        letter-spacing: -.01em;
+        line-height: 1;
+        text-transform: uppercase;
+        color: #F7FBFF;
+      }
+
+      body[data-wm-theme] .wm-set__lead {
+        max-width: 46ch;
+        margin: 0;
+        color: rgba(234, 243, 255, .74);
+        font-size: 12.5px;
+        line-height: 1.55;
+      }
+
+      body[data-wm-theme] .wm-set__stats {
+        display: flex;
+        gap: 22px;
+        width: max-content;
+        margin-top: 18px;
+        padding: 8px 10px;
+        border: 1px solid rgba(234, 243, 255, .1);
+        border-radius: 3px;
+        background: rgba(3, 12, 24, .32);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06);
+        backdrop-filter: blur(3px);
+      }
+
+      body[data-wm-theme] .wm-set__stat {
+        display: flex;
+        align-items: baseline;
+        gap: 5px;
+        color: rgba(234, 243, 255, .55);
+        font-family: var(--wm-display);
+        font-size: 8px;
+        font-weight: 600;
+        letter-spacing: .18em;
+        text-transform: uppercase;
+      }
+
+      body[data-wm-theme] .wm-set__stat b {
+        color: var(--wm-blue-bright);
+        font-size: 15px;
+        font-style: italic;
+        letter-spacing: .02em;
+      }
+
+      body[data-wm-theme] .wm-set__section {
+        margin-top: 28px;
+      }
+
+      body[data-wm-theme] .wm-set__sectionHead {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 11px;
+      }
+
+      body[data-wm-theme] .wm-set__section h3 {
+        margin: 0;
+        color: var(--dsw-alias-label-primary);
+        font-family: var(--wm-display);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: .2em;
+        text-transform: uppercase;
+      }
+
+      body[data-wm-theme] .wm-set__hint {
+        color: var(--dsw-alias-label-tertiary);
+        font-size: 10.5px;
+      }
+
+      body[data-wm-theme] .wm-set__modes {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      body[data-wm-theme] .wm-set__mode {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        padding: 11px;
+        border: 1px solid var(--wm-line);
+        border-radius: 7px;
+        background: var(--wm-plate);
+        color: inherit;
+        font: inherit;
+        text-align: left;
+        cursor: pointer;
+        transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+      }
+
+      body[data-wm-theme] .wm-set__mode:hover {
+        border-color: color-mix(in srgb, var(--wm-blue) 55%, var(--wm-line));
+        transform: translateY(-1px);
+      }
+
+      body[data-wm-theme] .wm-set__mode[aria-pressed="true"] {
+        border-color: var(--wm-blue);
+        box-shadow:
+          0 0 0 1px var(--wm-blue),
+          0 8px 22px color-mix(in srgb, var(--wm-blue) 18%, transparent);
+      }
+
+      body[data-wm-theme] .wm-set__mode:focus-visible {
+        outline: 2px solid var(--wm-blue);
+        outline-offset: 2px;
+      }
+
+      body[data-wm-theme] .wm-set__swatch {
+        position: relative;
+        width: 74px;
+        height: 50px;
+        flex: none;
+        overflow: hidden;
+        border-radius: 4px;
+        border: 1px solid rgba(7, 26, 49, .16);
+      }
+
+      body[data-wm-theme] .wm-set__swatch--day {
+        background:
+          linear-gradient(160deg, #FFFFFF 0 58%, #E8F0F9 58% 100%);
+      }
+
+      body[data-wm-theme] .wm-set__swatch--night {
+        background:
+          radial-gradient(80% 90% at 80% 0%, #0A5C8A, transparent 70%),
+          linear-gradient(160deg, #061426 0 58%, #030B16 58% 100%);
+      }
+
+      body[data-wm-theme] .wm-set__swatch::before {
+        content: "";
+        position: absolute;
+        left: 7px;
+        right: 7px;
+        bottom: 8px;
+        height: 18px;
+        border-radius: 2px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, .9), transparent),
+          var(--wm-blue);
+        opacity: .9;
+      }
+
+      body[data-wm-theme] .wm-set__swatch--night::before {
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, .18), transparent),
+          #0A2A4A;
+        box-shadow: inset 0 0 0 1px rgba(53, 196, 240, .32);
+      }
+
+      body[data-wm-theme] .wm-set__swatch::after {
+        content: "";
+        position: absolute;
+        left: 7px;
+        top: 8px;
+        width: 4px;
+        height: 30px;
+        background: linear-gradient(
+          90deg,
+          var(--wm-blue-bright) 0 1px,
+          var(--wm-blue) 1px 2px,
+          var(--wm-red) 2px 3px,
+          var(--wm-blue) 3px 4px);
+      }
+
+      body[data-wm-theme] .wm-set__modeText {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        min-width: 0;
+      }
+
+      body[data-wm-theme] .wm-set__modeName {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-family: var(--wm-display);
+        font-size: 14px;
+        font-style: italic;
+        font-weight: 700;
+        letter-spacing: .02em;
+        text-transform: uppercase;
+      }
+
+      body[data-wm-theme] .wm-set__modeNote {
+        color: var(--dsw-alias-label-tertiary);
+        font-size: 10.5px;
+        line-height: 1.4;
+      }
+
+      body[data-wm-theme] .wm-set__active {
+        display: inline-block;
+        padding: 1px 5px;
+        border-radius: 2px;
+        background: var(--wm-blue-soft);
+        color: var(--wm-blue);
+        font-family: var(--wm-display);
+        font-size: 7px;
+        font-weight: 700;
+        font-style: normal;
+        letter-spacing: .16em;
+      }
+
+      body[data-wm-theme] .wm-set__palette {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      body[data-wm-theme] .wm-set__chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 5px 7px 5px 5px;
+        border: 1px solid var(--wm-line);
+        border-radius: 4px;
+        background: var(--wm-plate);
+        color: var(--dsw-alias-label-secondary);
+        font-family: var(--wm-display);
+        font-size: 7.5px;
+        font-weight: 600;
+        letter-spacing: .11em;
+        text-transform: uppercase;
+      }
+
+      body[data-wm-theme] .wm-set__chip i {
+        display: block;
+        width: 16px;
+        height: 16px;
+        border-radius: 3px;
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .14);
+      }
+
+      body[data-wm-theme] .wm-set__details {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+
+      body[data-wm-theme] .wm-set__detail {
+        padding: 12px 13px;
+        border: 1px solid var(--wm-line);
+        border-left: 2px solid var(--wm-blue);
+        border-radius: 4px;
+        background: var(--wm-plate);
+      }
+
+      body[data-wm-theme] .wm-set__detail b {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--dsw-alias-label-primary);
+        font-family: var(--wm-display);
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+      }
+
+      body[data-wm-theme] .wm-set__detail span {
+        color: var(--dsw-alias-label-tertiary);
+        font-size: 10.5px;
+        line-height: 1.45;
+      }
+
+      body[data-wm-theme] .wm-set__footer {
+        margin-top: 24px;
+        padding-top: 14px;
+        border-top: 1px solid var(--wm-line);
+        color: var(--dsw-alias-label-tertiary);
+        font-size: 10.5px;
+        line-height: 1.5;
+      }
+
+      /* ---------- Small screens and motion ------------------------------- */
+
+      @media (max-width: 1180px) {
+        body[data-wm-theme] .wm-art__wordmark {
+          display: none;
+        }
+      }
+
+      @media (max-width: 980px) {
+        body[data-wm-theme] .wm-art__car {
+          width: min(48vw, 380px);
+        }
+
+        body[data-wm-theme] .wm-set__details {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 720px) {
+        body[data-wm-theme] .wm-art__car {
+          display: none;
+        }
+
+        body[data-wm-theme] .wm-set {
+          padding: 18px 16px 30px;
+        }
+
+        body[data-wm-theme] .wm-set__hero {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+          padding: 20px;
+        }
+
+        body[data-wm-theme] .wm-set__logo {
+          width: 160px;
+          max-width: 80%;
+        }
+
+        body[data-wm-theme] .wm-set__modes {
+          grid-template-columns: 1fr;
+        }
+
+        body[data-wm-theme] .wm-pit__label,
+        body[data-wm-theme] .wm-pit__bars {
+          display: none;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        body[data-wm-theme] button[class*="newSession"],
+        body[data-wm-theme] button[aria-label="Send message"],
+        body[data-wm-theme] .wm-mode__thumb,
+        body[data-wm-theme] .wm-set__mode,
+        body[data-wm-theme] [data-composer-card] {
+          transition: none;
+        }
+      }
+    </style>
+</head>
+<body data-wm-theme="martini">
+  <div class="panel">
+    <div class="wm-set">
+      <header class="wm-set__hero">
+        <img class="wm-set__logo" src="file:///C:/Users/admin/dsh-williams-martini-theme/assets/martini-logo.webp" alt="Martini Racing">
+        <div class="wm-set__heroText">
+          <span class="wm-set__eyebrow">Livery · FW40 · 2017</span>
+          <h2>Williams Martini Racing</h2>
+          <p class="wm-set__lead">A paddock-to-floodlight livery for DeepSeek Harness, cut from the Martini four-stripe livery and the FW40 detail.</p>
+          <div class="wm-set__stats">
+            <span class="wm-set__stat"><b>4</b> stripes</span>
+            <span class="wm-set__stat"><b>19</b> race number</span>
+            <span class="wm-set__stat"><b>2017</b> season</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="wm-set__section">
+        <div class="wm-set__sectionHead">
+          <h3>Choose the light</h3>
+          <span class="wm-set__hint">Switches the whole shell</span>
+        </div>
+        <div class="wm-set__modes">
+          <button type="button" class="wm-set__mode" aria-pressed="true">
+            <span class="wm-set__swatch wm-set__swatch--day" aria-hidden="true"></span>
+            <span class="wm-set__modeText">
+              <span class="wm-set__modeName">Paddock <span class="wm-set__active">Active</span></span>
+              <span class="wm-set__modeNote">Ice white, ink navy, daylight blue.</span>
+            </span>
+          </button>
+          <button type="button" class="wm-set__mode" aria-pressed="false">
+            <span class="wm-set__swatch wm-set__swatch--night" aria-hidden="true"></span>
+            <span class="wm-set__modeText">
+              <span class="wm-set__modeName">Night race</span>
+              <span class="wm-set__modeNote">Deep navy, floodlights, electric blue.</span>
+            </span>
+          </button>
+        </div>
+      </section>
+
+      <section class="wm-set__section">
+        <div class="wm-set__sectionHead">
+          <h3>Race palette</h3>
+          <span class="wm-set__hint">Six colours, nothing else</span>
+        </div>
+        <div class="wm-set__palette">
+          <span class="wm-set__chip"><i style="background:#071A31"></i>Ink navy</span>
+          <span class="wm-set__chip"><i style="background:#009FDF"></i>Martini blue</span>
+          <span class="wm-set__chip"><i style="background:#E4002B"></i>Rosso</span>
+          <span class="wm-set__chip"><i style="background:#F1F5FA"></i>Ice white</span>
+          <span class="wm-set__chip"><i style="background:#B9C9DA"></i>Silverstone</span>
+          <span class="wm-set__chip"><i style="background:#EFBF4C"></i>Podium gold</span>
+        </div>
+      </section>
+
+      <section class="wm-set__section">
+        <div class="wm-set__sectionHead"><h3>Livery details</h3></div>
+        <div class="wm-set__details">
+          <div class="wm-set__detail"><b>Martini rails</b><span>Four-stripe edges on the rail, composer and buttons.</span></div>
+          <div class="wm-set__detail"><b>Supplied artwork</b><span>The die-cut Martini roundel and the FW40 sidepod detail.</span></div>
+          <div class="wm-set__detail"><b>Race typography</b><span>Condensed italic display type and pit-board micro labels.</span></div>
+        </div>
+      </section>
+
+      <footer class="wm-set__footer">The theme is a token layer: the built-in Light, Dark and System preference still works. Disabling the plugin restores the stock palette and removes every livery surface.</footer>
+    </div>
+  </div>
+</body>
+</html>
